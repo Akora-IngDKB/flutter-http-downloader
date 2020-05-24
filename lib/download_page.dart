@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
+import 'download_service.dart';
 
 class DownloadPage extends StatelessWidget {
+  final url = "http://www.pdf995.com/samples/pdf.pdf";
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -10,9 +15,20 @@ class DownloadPage extends StatelessWidget {
       ),
       body: Center(
         child: RaisedButton(
-          onPressed: () {},
           color: Colors.green,
           child: Text('Download File'),
+          onPressed: () async {
+            final provider =
+                Provider.of<DownloadService>(context, listen: false);
+
+            if (await provider.checkPermission()) {
+              provider.downloadFile(
+                context: context,
+                url: url,
+                filename: "A Simple PDF",
+              );
+            }
+          },
         ),
       ),
     );
