@@ -19,6 +19,7 @@ class DownloadService extends ChangeNotifier {
   int percent = 0;
   DownloadTaskStatus status = DownloadTaskStatus.STARTING;
   File downloadedFile;
+  String folderName = 'My HTTP Folder';		// Change to suit the task at hand
 
   Future<void> downloadFile({
     @required BuildContext context,
@@ -40,7 +41,7 @@ class DownloadService extends ChangeNotifier {
     var response = httpClient.send(request);
     // This will only work on Android.
     // Use path_provider when platform is iOS.
-    Directory directory = Directory("/storage/emulated/0/My HTTP Folder");
+    Directory directory = Directory("/storage/emulated/0/folderName");
 
     List<List<int>> chunks = new List();
 
