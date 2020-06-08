@@ -41,7 +41,7 @@ class DownloadService extends ChangeNotifier {
     var response = httpClient.send(request);
     // This will only work on Android.
     // Use path_provider when platform is iOS.
-    Directory directory = Directory("/storage/emulated/0/folderName");
+    Directory directory = Directory("/storage/emulated/0/$folderName");
 
     List<List<int>> chunks = new List();
 
